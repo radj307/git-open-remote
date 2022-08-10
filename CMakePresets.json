@@ -1,0 +1,191 @@
+﻿{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+      },
+      "warnings": {
+        "deprecated": true,
+        "unusedCli": true
+      }
+    },
+
+
+
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+
+    {
+      "name": "windows-x64",
+      "hidden": true,
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "windows-x64-debug",
+      "displayName": "Debug (x64)",
+      "inherits": "windows-x64",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "windows-x64-relwithdebinfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "inherits": "windows-x64",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" }
+    },
+    {
+      "name": "windows-x64-release",
+      "displayName": "Release (x64)",
+      "inherits": "windows-x64",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "windows-x64-minsizerel",
+      "displayName": "MinSizeRel (x64)",
+      "inherits": "windows-x64",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "MinSizeRel" }
+    },
+
+    {
+      "name": "windows-x86",
+      "hidden": true,
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "windows-x86-debug",
+      "hidden": true,
+      "displayName": "Debug (x86)",
+      "inherits": "windows-x86",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "windows-x86-relwithdebinfo",
+      "hidden": true,
+      "displayName": "RelWithDebInfo (x86)",
+      "inherits": "windows-x86",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" }
+    },
+    {
+      "name": "windows-x86-release",
+      "hidden": true,
+      "displayName": "Release (x86)",
+      "inherits": "windows-x86",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "windows-x86-minsizerel",
+      "hidden": true,
+      "displayName": "MinSizeRel (x86)",
+      "inherits": "windows-x86",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "MinSizeRel" }
+    },
+
+
+    {
+      "name": "linux-base",
+      "hidden": true,
+      "inherits": "base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "linux-debug",
+      "displayName": "Debug",
+      "inherits": "linux-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "linux-relwithdebinfo",
+      "displayName": "RelWithDebInfo",
+      "inherits": "linux-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" }
+    },
+    {
+      "name": "linux-release",
+      "displayName": "Release",
+      "inherits": "linux-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "linux-minsizerel",
+      "displayName": "MinSizeRel",
+      "inherits": "linux-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "MinSizeRel" }
+    },
+
+
+
+    {
+      "name": "macos-base",
+      "hidden": true,
+      "inherits": "base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "macos-debug",
+      "displayName": "Debug",
+      "inherits": "macos-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "macos-relwithdebinfo",
+      "displayName": "RelWithDebInfo",
+      "inherits": "macos-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" }
+    },
+    {
+      "name": "macos-release",
+      "displayName": "Release",
+      "inherits": "macos-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "macos-minsizerel",
+      "displayName": "MinSizeRel",
+      "inherits": "macos-base",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "MinSizeRel" }
+    }
+  ]
+}
